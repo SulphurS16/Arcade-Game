@@ -7,11 +7,11 @@ public class Health : MonoBehaviour
     public int health;
 
     private ParticleSystem ps;
-    private SpriteRenderer spriteRenderer;
+    private Zombie zombie;
 
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        zombie = GetComponent<Zombie>();
         ps = GetComponent<ParticleSystem>();
     }
 
@@ -27,8 +27,12 @@ public class Health : MonoBehaviour
 
     private IEnumerator Die()
     {
-        spriteRenderer.sprite = null;
+        zombie.dead = true;
         Destroy(GetComponent<Collider2D>());
+        foreach(Transform t in transform)
+        {
+            Destroy(t.gameObject);
+        }
         yield return new WaitForSeconds(3);
         Destroy(gameObject);
     }
