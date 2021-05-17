@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private float aimAngle;
     private bool canshoot = true;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
             float angle = Mathf.Atan2(aimInput.y, aimInput.x) * Mathf.Rad2Deg;
             if(useSmoothAim)
             {
-            aimAngle = Mathf.MoveTowards(aimAngle, angle, aimSpeed);
+            aimAngle = Mathf.MoveTowardsAngle(aimAngle, angle, aimSpeed);
             }
             else { aimAngle = angle; }
 
@@ -47,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
             Debug.DrawRay(transform.position, transform.up);
             if (canshoot)
-                StartCoroutine(Shoot(aimInput));
+                StartCoroutine(Shoot());
         }
         if (input != Vector2.zero)
         {
@@ -55,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator Shoot(Vector2 direction)
+    private IEnumerator Shoot()
     {
         canshoot = false;
         ps.Emit(1);
@@ -65,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(hit.collider.name);
             if (hit.collider.CompareTag("Zombie"))
             {
-                hit.collider.GetComponent<Health>().Damage(1);
+               hit.collider.GetComponent<ZombieHealth>().Hit(1);
             }
         }
             yield return new WaitForSeconds(shootSpeed);

@@ -92,10 +92,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5695444835440106628}
   - component: {fileID: 5695444835440106630}
+  - component: {fileID: 5737760837748620635}
   - component: {fileID: 5695444835440106625}
   - component: {fileID: 5695444835440106624}
   - component: {fileID: 5695444835440106627}
-  - component: {fileID: 5695444835440106629}
   - component: {fileID: 8875764538295712984}
   - component: {fileID: 7095100824232958008}
   - component: {fileID: 4813333728237557392}
@@ -138,6 +138,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.09234844
+--- !u!114 &5737760837748620635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5695444835440106626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 087c7e6e7cbb93a439d376599f50b9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5695444835440106625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ca26734c4f3d04e8563a6329e3bcee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dead: 0
 --- !u!195 &5695444835440106624
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -194,19 +205,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5695444835440106629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5695444835440106626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab9cf0ed42dfd634db01dffdf8789550, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 3
 --- !u!198 &8875764538295712984
 ParticleSystem:
   m_ObjectHideFlags: 0

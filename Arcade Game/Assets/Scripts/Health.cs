@@ -2,38 +2,49 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public abstract class Health : MonoBehaviour
 {
-    public int health;
+    /// <summary>
+    /// Hit points remaining 
+    /// </summary>
+    protected int Life { get; private set; }
 
-    private ParticleSystem ps;
-    private Zombie zombie;
-
-    private void Start()
+    /// <summary>
+    /// adds health to the total life amount staying within max health
+    /// </summary>
+    /// <param name="health"></param>
+    /// <param name="maxHealth"></param>
+    protected void Heal(int health, int maxHealth = int.MaxValue)
     {
-        zombie = GetComponent<Zombie>();
-        ps = GetComponent<ParticleSystem>();
+        if (health + Life <= maxHealth)
+        {
+            Life += health;
+        } else { Life = maxHealth; }
     }
 
-    public void Damage(int damage)
+    /// <summary>
+    /// Subtracts from Health
+    /// </summary>
+    protected void Damage(int damage)
     {
-        ps.Emit(30);
-        health -= damage;
-        if(health <= 0)
+        Life -= damage;
+        if (Life <= 0)
         {
-            StartCoroutine(Die());
+            Die();
         }
     }
 
-    private IEnumerator Die()
+    /// <summary>
+    /// What to do when dead 
+    /// </summary>
+    protected abstract void Die();
+
+    /// <summary>
+    /// Set the starting health
+    /// </summary>
+    /// <param name="life"></param>
+    protected void Sethealth(int life)
     {
-        zombie.dead = true;
-        Destroy(GetComponent<Collider2D>());
-        foreach(Transform t in transform)
-        {
-            Destroy(t.gameObject);
-        }
-        yield return new WaitForSeconds(3);
-        Destroy(gameObject);
+        Life = life;
     }
 }
